@@ -46,7 +46,7 @@ timerMSec = 62500;
 standTimer = 750;
 adminTimer = 750;
 volTimer = 800;
-timer = 30000;
+timer = 900;
 maxDes = 26; minDes = 20;
 init x = t3 + t4 + isStand + checkSum == 12580;
 x = x ? 4 : 2;
@@ -85,7 +85,7 @@ define y as TMP24;
 y = 4;
 erase y;
 init x = standTimer == 0;
-timer = 30000;
+timer = 900;
 x = x ? 5 : 9;
 if (standTimer == 0) { standTimer = 750; }
 if (x == 5) { s1 = 1; ind3 = 1; }
@@ -142,7 +142,7 @@ init rele4 = s4;
 init v = voltage;
 
 init tmp1 = inside > desired;
-init out = outside >= 5;
+init out = outside >= 19;
 init cond = tmp1 && out;
 if (cond && (rele2 == 0)) { rele2 = 1; v = 0; }
 if (!cond && (rele2 == 1) && (rele3 == 0)) { rele2 = 0; }
@@ -160,7 +160,13 @@ if (out || !tmp1) { rele4 = 0; }
 delete tmp1;
 delete out;
 
-if (rele2 == 0) { volTimer = 800; }
+if (rele2 == 0) { timer = 900; }
+init tmp = (timer > 0) && (rele2 == 1);
+if (tmp) { rele2 = 0; }
+if (tmp && (rele3 == 1)) { rele3 = 0; }
+delete tmp;
+
+if (rele2 == 0) { volTimer = 800; v = 0; }
 init delta = 0;
 
 init on2 = rele2 == 1;
@@ -176,7 +182,7 @@ if (tmp2 && on3) { delta = 2; }
 if (!tmp2 && on3) { delta = 0 - 2; }
 delete tmp2;
 delete on3;
-
+ 
 if (volTimer == 0) { volTimer = 800; v = v + delta; }
 delete delta;
 
@@ -189,7 +195,7 @@ delete left;
 
 s2 = rele2; s3 = rele3; s4 = rele4;
 delete rele2; delete rele3; delete rele4;
-delete v;
+voltage = v; delete v;
 delete inside;
 delete desired;
 
