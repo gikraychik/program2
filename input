@@ -272,7 +272,7 @@ if (!upStatus || !downStatus) { standTimer = 750; }
 if (delta > standTimer) { standTimer = 0; }
 if (delta <= standTimer) { standTimer = standTimer - delta; }
 
-if (!(video == 1) || !enter) { adminTimer = 750; }
+if (!(video == 0) || !enter) { adminTimer = 750; }
 if (delta > adminTimer) { adminTimer = 0; }
 if (delta <= adminTimer) { adminTimer = adminTimer - delta; }
 
