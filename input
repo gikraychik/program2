@@ -141,23 +141,27 @@ init rele3 = s3;
 init rele4 = s4;
 init v = voltage;
 
-init tmp1 = inside > desired;
 init out = outside >= 19;
-init cond = tmp1 && out;
-if (cond && (rele2 == 0)) { rele2 = 1; v = 0; }
-if (!cond && (rele2 == 1) && (rele3 == 0)) { rele2 = 0; }
-delete tmp1;
-delete cond;
 
 init tmp1 = inside < desired;
 init cond = tmp1 && out;
-if (cond && (rele3 == 0)) { rele2 = 1; rele3 = 1; v = 0; }
+if (cond && (rele3 == 0)) { rele2 = 1; rele3 = 1; }
 if (!cond && (rele3 == 1)) { rele2 = 0; rele3 = 0; }
 delete cond;
 
-if (!out && tmp1) { rele4 = 1; }
-if (out || !tmp1) { rele4 = 0; }
+init tmp2 = !out && tmp1;
+if (tmp2) { rele4 = 1; }
+if (!tmp2) { rele4 = 0; }
+delete tmp2;
 delete tmp1;
+
+init tmp1 = inside > desired;
+init cond = tmp1 && out;
+if (cond && (rele2 == 0)) { rele2 = 1; }
+if (!cond && (rele2 == 1) && (rele3 == 0)) { rele2 = 0; }
+delete cond;
+delete tmp1;
+
 delete out;
 
 if (rele2 == 0) { timer = 900; }
@@ -166,7 +170,6 @@ if (tmp) { rele2 = 0; }
 if (tmp && (rele3 == 1)) { rele3 = 0; }
 delete tmp;
 
-if (rele2 == 0) { volTimer = 800; v = 0; }
 init delta = 0;
 
 init on2 = rele2 == 1;
@@ -184,6 +187,7 @@ delete tmp2;
 delete on3;
  
 if (volTimer == 0) { volTimer = 800; v = v + delta; }
+if (rele2 == 0) { volTimer = 800; v = 0; }
 delete delta;
 
 ind5 = rele3 ? 1 : 0;
