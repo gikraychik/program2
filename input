@@ -45,8 +45,8 @@ s1 = 0; ind2 = 1; ind3 = 0;
 timerMSec = 62500;
 standTimer = 750;
 adminTimer = 750;
-volTimer = 800;
-timer = 900;
+volTimer = 30000;
+timer = 30000;
 maxDes = 26; minDes = 20;
 init x = t3 + t4 + isStand + checkSum == 12580;
 x = x ? 4 : 2;
@@ -85,7 +85,7 @@ define y as TMP24;
 y = 4;
 erase y;
 init x = standTimer == 0;
-timer = 900;
+timer = 30000	;
 x = x ? 5 : 9;
 if (standTimer == 0) { standTimer = 750; }
 if (x == 5) { s1 = 1; ind3 = 1; }
@@ -164,7 +164,7 @@ delete tmp1;
 
 delete out;
 
-if (rele2 == 0) { timer = 900; }
+if (rele2 == 0) { timer = 30000; }
 init tmp = (timer > 0) && (rele2 == 1);
 if (tmp) { rele2 = 0; }
 if (tmp && (rele3 == 1)) { rele3 = 0; }
@@ -186,8 +186,8 @@ if (!tmp2 && on3) { delta = 0 - 2; }
 delete tmp2;
 delete on3;
  
-if (volTimer == 0) { volTimer = 800; v = v + delta; }
-if (rele2 == 0) { volTimer = 800; v = 0; }
+if (volTimer == 0) { volTimer = 30000; v = v + delta; }
+if (rele2 == 0) { volTimer = 30000; v = 0; }
 delete delta;
 
 ind5 = rele3 ? 1 : 0;
