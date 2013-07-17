@@ -190,11 +190,11 @@ if (volTimer == 0) { volTimer = 30000; v = v + delta; }
 if (rele2 == 0) { volTimer = 30000; v = 0; }
 delete delta;
 
-ind4 = rele3 ? 1 : 0;
+ind5 = rele3 ? 1 : 0;
 ind1 = rele4 ? 1 : 0;
 init left = (!rele3) && (rele2);
-if (left) { ind5 = 1; }
-if (!left) { ind5 = 0; }
+if (left) { ind4 = 1; }
+if (!left) { ind4 = 0; }
 delete left;
 
 s2 = rele2; s3 = rele3; s4 = rele4;
