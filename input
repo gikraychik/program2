@@ -141,7 +141,7 @@ init rele3 = s3;
 init rele4 = s4;
 init v = voltage;
 
-init out = outside >= 19;
+init out = outside >= 5;
 
 init tmp1 = inside < desired;
 init cond = tmp1 && out;
