@@ -108,8 +108,8 @@ print(output, TMP21);
 
 init error = error1 || error2;
 define x1 as TMP21;
-define x2 as TMP22;
-define x3 as TMP23;
+define x2 as TMP23;
+define x3 as TMP24;
 if (error) { x1 = 158; x2 = 10; x3 = 10; }
 delete error1; delete error2; delete error;
 led1 = x1; led2 = x2; led3 = x3;
